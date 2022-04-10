@@ -349,6 +349,50 @@ class ViewController: UIViewController {
                            multiplier: 1.5,
                            constant: 0).isActive = true
         
+        // Done Button
+        let doneButton = UIButton()
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.tintColor = .white
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(doneButton)
+        
+        doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: doneButton,
+                           attribute: .width,
+                           relatedBy: .equal,
+                           toItem: nil,
+                           attribute: .notAnAttribute,
+                           multiplier: 1,
+                           constant: 162.0).isActive = true
+        
+        NSLayoutConstraint(item: doneButton,
+                           attribute: .height,
+                           relatedBy: .equal,
+                           toItem: nil,
+                           attribute: .notAnAttribute,
+                           multiplier: 1,
+                           constant: 50.0).isActive = true
+        
+        NSLayoutConstraint(item: doneButton,
+                           attribute: .centerY,
+                           relatedBy: .equal,
+                           toItem: self.view,
+                           attribute: .centerY,
+                           multiplier: 1.8, constant: 0).isActive = true
+        
+        
+        doneButton.layoutIfNeeded()
+        let gradient1 = CAGradientLayer()
+        let gradientStart = UIColor(red: 235/255.0, green: 78/255.0, blue: 101/255.0, alpha: 1.0)
+        let gradientEnd = UIColor(red: 240/255.0, green: 149/255.0, blue: 115/255.0, alpha: 1.0)
+        gradient1.colors = [gradientStart.cgColor, gradientEnd.cgColor]
+        gradient1.startPoint = CGPoint(x: 0, y: 0.5)
+        gradient1.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient1.frame = doneButton.bounds
+        doneButton.layer.cornerRadius = 25
+        doneButton.layer.insertSublayer(gradient1, at: 0)
+        doneButton.clipsToBounds = true
     }
 }
 
