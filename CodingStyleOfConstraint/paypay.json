@@ -1,0 +1,57 @@
+{
+  "paypay": {
+    "UIView": {
+      "name": "** Root.UIView 1 **",
+      "arg1": "UIView.1111",
+      "arg2": "UIView.2222",
+      "arg3": "UIView.3333",
+      "child": [
+        {
+          "UILabel": {
+            "name": "** Layer1.UILabel **",
+            "arg1": "Layer1.UILabel.1111",
+            "arg2": "Layer1.UILabel.2222",
+            "arg3": "Layer1.UILabel.3333"
+          },
+          "UIView": {
+            "name": "** Layer1.UIView **",
+            "child": [
+              {
+                "UIImageView": {
+                  "name": "** Layer2.UIImageView **",
+                  "arg1": "Layer2.UILabel.1111",
+                  "arg2": "Layer2.UILabel.2222",
+                  "arg3": "Layer2.UILabel.3333"
+                }
+              }
+            ]
+          },
+          "UIImageView": {
+            "name": "** Layer1.UIView **",
+            "child": [
+              {
+                "UIImageView": {
+                  "name": "** Layer2.UIImageView **",
+                  "arg1": "Layer2.UILabel.1111",
+                  "arg2": "Layer2.UILabel.2222",
+                  "arg3": "Layer2.UILabel.3333"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "UIImageView": {
+      "name": "** Root.UIImageView 1**",
+      "arg1": "UIView.1111",
+      "child": [
+        {
+          "UILabel": {
+            "name": "**Layer1.UILabel **"
+          }
+        }
+      ]
+    }
+  }
+}
