@@ -31,20 +31,14 @@ class ViewController: UIViewController {
         
         // MARK: Constraints
         // 高度
-        NSLayoutConstraint(item: topView,
-                           attribute: .height,
-                           relatedBy: .equal,
-                           toItem: self.view,
-                           attribute: .height,
-                           multiplier: 0.5,
-                           constant: 0.0).isActive = true
+        topView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4).isActive = true
         
         // 上、左、右
         topView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.35).isActive = true
         topView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         topView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         topView.layoutIfNeeded()    // 要有這一行才能拿到topView.bounds
-        // 加入漸層 gradientView
+        // 加入漸層 gradientView // background
         // MARK: !!!
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = topView.bounds
@@ -69,8 +63,9 @@ class ViewController: UIViewController {
         // MARK: Constraints
         // background
         // 高度、寬度
-        secondView.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.6).isActive = true
-        secondView.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40 ).isActive = true
+        secondView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6).isActive = true
+        secondView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        
         // 正中間
         secondView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         secondView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor).isActive = true
@@ -82,32 +77,21 @@ class ViewController: UIViewController {
         secondView.addSubview(topCircle)
         
         // 寬高 1:1 secondView寬的1/4
-        NSLayoutConstraint(item: topCircle,
-                           attribute: .width,
-                           relatedBy: .equal,
-                           toItem: topCircle,
-                           attribute: .height,
-                           multiplier: 1.0,
-                           constant: 0.0).isActive = true
-        
-        NSLayoutConstraint(item: topCircle,
-                           attribute: .width,
-                           relatedBy: .equal,
-                           toItem: secondView,
-                           attribute: .width,
-                           multiplier: 0.25,
-                           constant: 0.0).isActive = true
+        topCircle.widthAnchor.constraint(equalTo: secondView.widthAnchor, multiplier: 0.25).isActive = true
+        /// 製作 Circle
+        topCircle.heightAnchor.constraint(equalTo: topCircle.widthAnchor, multiplier: 1).isActive = true
         topCircle.layoutIfNeeded()  // 要有這一行才能取得bounds
         topCircle.layer.cornerRadius = topCircle.bounds.height * 0.5
+        ///
         
-        topCircle.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        topCircle.centerXAnchor.constraint(equalTo: secondView.safeAreaLayoutGuide.centerXAnchor).isActive = true
         topCircle.centerYAnchor.constraint(equalTo: secondView.topAnchor, constant: 0).isActive = true
         
         // merchantLogoImage
         let circleImage = UIImageView()
-        circleImage.backgroundColor = .white
-        circleImage.image = UIImage(named: "hivex")
-        circleImage.contentMode = .scaleAspectFit
+        circleImage.backgroundColor = .white    // variable
+        circleImage.image = UIImage(named: "hivex") // payload
+        circleImage.contentMode = .scaleAspectFit   // config
         circleImage.translatesAutoresizingMaskIntoConstraints = false
         topCircle.addSubview(circleImage)
         
@@ -150,6 +134,7 @@ class ViewController: UIViewController {
                            attribute: .centerY,
                            multiplier: 0.2,
                            constant: 0.0).isActive = true
+        
         titleLabel.centerXAnchor.constraint(equalTo: upPartView.centerXAnchor).isActive = true
         
         // DateLabel
@@ -174,13 +159,8 @@ class ViewController: UIViewController {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         upPartView.addSubview(priceLabel)
         
-        NSLayoutConstraint(item: priceLabel,
-                           attribute: .centerY,
-                           relatedBy: .equal,
-                           toItem: upPartView,
-                           attribute: .centerY,
-                           multiplier: 1,
-                           constant: 0.0).isActive = true
+        // X、Y正中間
+        priceLabel.centerYAnchor.constraint(equalTo: upPartView.centerYAnchor).isActive = true
         priceLabel.centerXAnchor.constraint(equalTo: upPartView.centerXAnchor).isActive = true
         
         // currencyLabel
@@ -215,11 +195,25 @@ class ViewController: UIViewController {
                            multiplier: 1.6,
                            constant: 0.0).isActive = true
         transactionResultStatus.centerXAnchor.constraint(equalTo: upPartView.centerXAnchor).isActive = true
-        NSLayoutConstraint(item: transactionResultStatus, attribute: .width, relatedBy: .equal, toItem: upPartView, attribute: .width, multiplier: 0.5, constant: 0).isActive = true
-        NSLayoutConstraint(item: transactionResultStatus, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30).isActive = true
+        
+        NSLayoutConstraint(
+            item: transactionResultStatus,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: upPartView,
+            attribute: .width,
+            multiplier: 0.5,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: transactionResultStatus,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 30).isActive = true
         
         transactionResultStatus.layoutIfNeeded()
-        print(transactionResultStatus.bounds.height)
         transactionResultStatus.layer.masksToBounds = true
         transactionResultStatus.layer.cornerRadius = transactionResultStatus.bounds.height * 0.5
         // -----
