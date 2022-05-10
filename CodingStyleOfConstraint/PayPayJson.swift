@@ -10,7 +10,7 @@ import Foundation
 // 遵從 Protocol Codable 基本型態
 // Int String Double Float Bool Data Array Dictionary URL Date
 struct PayPayJson: Codable {
-    var paypay: ObjectClass
+    var paypay: [ObjectClass]
 }
 
 struct ObjectClass: Codable {
@@ -25,7 +25,7 @@ struct ObjectProperty: Codable {
     var arg1: String?
     var arg2: String?
     var arg3: String?
-    var child: [ObjectClass]?
+    var children: [ObjectClass]?
 }
 
 
